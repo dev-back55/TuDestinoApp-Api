@@ -60,5 +60,29 @@ export const getPaymentId = async (req, res) => {
     }
 };
 
+export const getQtyPayment = async (req, res) => {
+    try {
+      const qtyPaymentQuery = await Payment.countDocuments();
+      res.status(200).json(qtyPaymentQuery);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+};
+
+export const getTotalPayment = async (req, res) => {
+    try {
+      const qtyTotalPayment = await Payment.aggregate([
+        {
+            $group: {
+               _id: null,
+               total: { $sum: "$total" }
+            }
+          }
+    ]);
+      res.status(200).json(qtyTotalPayment);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 
 
