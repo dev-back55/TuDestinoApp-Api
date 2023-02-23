@@ -9,18 +9,6 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-export const getQtyByCountry = async (req, res) => {
-  const countrys = req.query.countrys.split(",")
-  try {
-    const listCountrys = await Promise.all(countrys.map(country=>{
-      return Product.countDocuments({country:country})
-    }))
-    res.status(200).json(listCountrys);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 export const createProduct = async (req, res) => {
   const newProduct = new Product(req.body);
 

@@ -7,12 +7,7 @@ import {
   getTotalPayment
 } from "../controllers/payment.controller.js";
 
-
-
-
-
 const router = express.Router();
-
 
 router.get("/",getAllPayment);
 router.post("/",createPayment);
