@@ -6,7 +6,7 @@ import {
   deleteUser,
   getQtyUsers,
 } from "../controllers/user.controller.js";
-import { validateDataUpdateUser } from "../validations/user.validations.js";
+//import { validateDataUpdateUser } from "../validations/user.validations.js";
 /* para Ruta Protegida
 import { verifyUser, verifyAdmin } from "../utils/verifyToken.js"
 */

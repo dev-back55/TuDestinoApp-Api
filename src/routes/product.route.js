@@ -7,7 +7,7 @@ import {
   getProductType,
   updateProduct
 } from "../controllers/product.controller.js";
-import {validateDataUpdateProduct,validateDataCreateProduct} from '../validations/product.validations.js'
+//import {validateDataUpdateProduct,validateDataCreateProduct} from '../validations/product.validations.js'
 
 
 /* para Ruta Protegida
