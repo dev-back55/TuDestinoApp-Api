@@ -87,13 +87,9 @@ export const getTotalPayment = async (req, res) => {
 
   export const buscarReservasPorFechaDeHoy = async (req, res) => {
     try {
-
       const fechaHoy = new Date().toISOString().slice(0, 10); 
-    
-      const reservas = await Payment.find({ dateRegister: { $regex: fechaHoy } }).exec(); 
-    
+      const reservas = await Payment.find({ dateRegister: { $regex: fechaHoy } }).exec();     
       res.status(200).json(reservas);
-
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
