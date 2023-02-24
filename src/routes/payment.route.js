@@ -5,7 +5,7 @@ import {
   getPaymentId,
   getQtyPayment,
   getTotalPayment,
-  buscarReservasPorFechaDeHoy
+  buscarReservasPorFechaDeHoy,
 } from "../controllers/payment.controller.js";
 
 const router = express.Router();
