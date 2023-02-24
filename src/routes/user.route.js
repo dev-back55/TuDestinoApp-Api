@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.get("/", getUsers);
 router.get("/:id", getUser);
-router.patch("/:id", updateUser);
+router.patch("/:id", validateDataUpdateUser, updateUser);
 router.delete("/:id", deleteUser);
 router.get("/count/count", getQtyUsers);
 

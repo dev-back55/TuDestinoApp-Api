@@ -4,7 +4,8 @@ import {
   getAllPayment,
   getPaymentId,
   getQtyPayment,
-  getTotalPayment
+  getTotalPayment,
+  buscarReservasPorFechaDeHoy
 } from "../controllers/payment.controller.js";
 
 const router = express.Router();
@@ -14,6 +15,7 @@ router.post("/",createPayment);
 router.get("/:id",getPaymentId);
 router.get("/count/count",getQtyPayment);
 router.get("/sum/totalpayment", getTotalPayment)
+router.get("/reservas/hoy", buscarReservasPorFechaDeHoy)
 
 export default router;
 

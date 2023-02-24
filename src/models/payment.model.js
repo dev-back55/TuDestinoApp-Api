@@ -14,6 +14,10 @@ const PaymetSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  image: {
+    type: String,
+    require: true,
+  },
   numberEvening: {
     type: Number,
     require: true,

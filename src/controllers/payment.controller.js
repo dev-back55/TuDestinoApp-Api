@@ -53,7 +53,7 @@ export const getAllPayment = async (req, res) => {
 export const getPaymentId = async (req, res) => {
     const {id} = req.params
     try {
-        const payments = await Payment.findOne({_id:id});
+        const payments = await Payment.find({idUser:id});
         res.status(200).json(payments);
     } catch (error) {
         return res.status(400).json({ message: error.message });
@@ -83,6 +83,18 @@ export const getTotalPayment = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
-  }
+  };
 
+  export const buscarReservasPorFechaDeHoy = async (req, res) => {
+    try {
 
+      const fechaHoy = new Date().toISOString().slice(0, 10); 
+    
+      const reservas = await Payment.find({ dateRegister: { $regex: fechaHoy } }).exec(); 
+    
+      res.status(200).json(reservas);
+
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
