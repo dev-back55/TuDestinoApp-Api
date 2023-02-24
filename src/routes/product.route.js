@@ -17,10 +17,10 @@ import { verifyUser, verifyAdmin } from "../utils/verifyToken.js"
 const router = express.Router();
 
 router.get("/", getAllProducts);
-router.post("/", validateDataCreateProduct,createProduct);
+router.post("/",createProduct);
 router.get("/:id", getProductById);
 router.get("/type/:Type", getProductType);
-router.patch("/:id",validateDataUpdateProduct, updateProduct);
+router.patch("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 
 /* RUTAS PROTEGIDAS
