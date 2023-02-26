@@ -6,7 +6,7 @@ import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
 import paymentRoute from "./routes/payment.route.js"
 import dotenv from "dotenv"
-import mercadopago from "mercadopago";
+//import mercadopago from "mercadopago";
 
 dotenv.config();
 
