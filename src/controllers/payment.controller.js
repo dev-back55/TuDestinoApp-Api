@@ -89,20 +89,69 @@ export const getTotalPayment = async (req, res) => {
 
   export const getPaymentDate = async (req, res) => {
     try {
-      const fechaHoy = new Date().toISOString().slice(0, 10);
-      const qtyTotalPayment = await Payment.aggregate([
+      //const hoy = new Date().toISOString().slice(0, 10);
+      const hoy = new Date().toISOString().slice(0, 10);
+      const ventas = await Payment.aggregate([
         {
-            $group: {
-               _id: null,
-               total: { $sum: "$total" }
-            }
-          }
-    ]);
-      res.status(200).json(qtyTotalPayment);
+          $match: {
+            dateRegister: { $regex: new RegExp(hoy) },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalVentas: { $sum: "$total" },
+          },
+        },
+      ]);
+    
+      // const totalVentas = ventas.length > 0 ? ventas[0].ventas : 0;
+
+      res.status(200).json(ventas);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   };
+
+  export const getPaymentLastWeek = async (req, res) => {
+    try {
+      const fechaActual = new Date(); // Obtiene la fecha actual
+      const diaSemana = fechaActual.getDay(); // Obtiene el día de la semana actual (0-6)
+    
+      // Calcula la fecha de inicio de la semana (lunes)
+      const fechaInicioSemana = new Date(fechaActual);
+      fechaInicioSemana.setDate(fechaInicioSemana.getDate() - diaSemana + 1);
+      fechaInicioSemana.setHours(0, 0, 0, 0);
+    
+      // Calcula la fecha de fin de la semana (domingo)
+      const fechaFinSemana = new Date(fechaActual);
+      fechaFinSemana.setDate(fechaFinSemana.getDate() - diaSemana + 7);
+      fechaFinSemana.setHours(23, 59, 59, 999);
+    
+      const ventas = await Payment.aggregate([
+        {
+          $match: {
+            $expr: {
+              $and: [
+                { $gte: [{ $toDate: "$dateRegister" }, fechaInicioSemana] }, // Compara con la fecha de inicio de la semana
+                { $lte: [{ $toDate: "$dateRegister" }, fechaFinSemana] } // Compara con la fecha de fin de la semana
+              ]
+            }
+          }
+        },
+        { $group: { _id: null, ventas: { $sum: "$total" } } }
+      ]);
+    
+      const totalVentas = ventas.length > 0 ? ventas[0].ventas : 0;
+        
+        res.status(200).json(totalVentas);
+
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+
 
   export const buscarReservasPorFechaDeHoy = async (req, res) => {
     try {

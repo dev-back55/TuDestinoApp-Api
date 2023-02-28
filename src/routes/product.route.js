@@ -8,20 +8,17 @@ import {
   updateProduct
 } from "../controllers/product.controller.js";
 import {validateDataUpdateProduct,validateDataCreateProduct} from '../validations/product.validations.js'
-
-
-/* para Ruta Protegida
 import { verifyUser, verifyAdmin } from "../utils/verifyToken.js"
-*/
+
 
 const router = express.Router();
 
 router.get("/", getAllProducts);
-router.post("/", createProduct);
+router.post("/", verifyAdmin, validateDataCreateProduct,createProduct);
 router.get("/:id", getProductById);
 router.get("/type/:Type", getProductType);
-router.patch("/:id", updateProduct);
-router.delete("/:id", deleteProduct);
+router.patch("/:id", verifyAdmin, validateDataUpdateProduct, updateProduct);
+router.delete("/:id", verifyAdmin, deleteProduct);
 
 /* RUTAS PROTEGIDAS
 crear producto solo admin
