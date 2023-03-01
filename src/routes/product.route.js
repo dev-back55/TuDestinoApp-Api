@@ -6,7 +6,8 @@ import {
   getAllProducts,
   getProductType,
   updateProduct,
-  getProductDashboard
+  getProductDashboard,
+  searchProducts
 } from "../controllers/product.controller.js";
 import {validateDataUpdateProduct,validateDataCreateProduct} from '../validations/product.validations.js'
 //import { verifyUser, verifyAdmin } from "../utils/verifyToken.js"
@@ -20,6 +21,7 @@ router.get("/:id", getProductById);
 router.get("/type/:Type", getProductType);
 router.patch("/:id", updateProduct);
 router.get("/all/dashboard", getProductDashboard);
+router.get("/all/search", searchProducts);
 //router.delete("/:id", deleteProduct);
 
 /* RUTAS PROTEGIDAS
