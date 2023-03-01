@@ -18,6 +18,7 @@ export const validateDataUpdateProduct = [
   check("productType").optional().exists().notEmpty().isString(),
   check("gym").optional().exists().notEmpty().isBoolean(),
   check("swimmingPool").optional().exists().notEmpty().isBoolean(),
+  check("isActive").optional().exists().notEmpty().isBoolean(),
   (req, resp, next) => validateResult(req, resp, next),
 ];
 
@@ -38,5 +39,6 @@ export const validateDataCreateProduct = [
   check("productType").exists().notEmpty().isString(),
   check("gym").exists().notEmpty().isBoolean(),
   check("swimmingPool").exists().notEmpty().isBoolean(),
+  check("isActive").optional().exists().notEmpty().isBoolean(),
   (req, resp, next) => validateResult(req, resp, next),
 ];
