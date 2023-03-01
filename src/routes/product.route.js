@@ -15,10 +15,10 @@ import {validateDataUpdateProduct,validateDataCreateProduct} from '../validation
 const router = express.Router();
 
 router.get("/", getAllProducts);
-router.post("/", validateDataCreateProduct,createProduct);
+router.post("/", createProduct);
 router.get("/:id", getProductById);
 router.get("/type/:Type", getProductType);
-router.patch("/:id", validateDataUpdateProduct, updateProduct);
+router.patch("/:id", updateProduct);
 router.get("/all/dashboard", getProductDashboard);
 //router.delete("/:id", deleteProduct);
 
