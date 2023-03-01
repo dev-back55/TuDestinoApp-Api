@@ -19,7 +19,7 @@ router.post("/", validateDataCreateProduct,createProduct);
 router.get("/:id", getProductById);
 router.get("/type/:Type", getProductType);
 router.patch("/:id", validateDataUpdateProduct, updateProduct);
-router.get("/dashboard", getProductDashboard);
+router.get("/all/dashboard", getProductDashboard);
 //router.delete("/:id", deleteProduct);
 
 /* RUTAS PROTEGIDAS
