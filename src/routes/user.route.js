@@ -8,18 +8,14 @@ import {
 } from "../controllers/user.controller.js";
 import { validateDataUpdateUser } from "../validations/user.validations.js";
 // para Ruta Protegida
-import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
+//import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.get("/", verifyAdmin, getUsers);
-router.get("/:id", verifyUser, getUser);
-router.patch("/:id", verifyUser, validateDataUpdateUser, updateUser);
-//router.get("/", getUsers);
-//router.get("/:id", getUser);
-//router.patch("/:id", validateDataUpdateUser, updateUser);
-router.delete("/:id", verifyUser, deleteUser);
-router.get("/count/count", verifyAdmin, getQtyUsers);
+router.get("/", getUsers);
+router.get("/:id", getUser);
+router.patch("/:id", validateDataUpdateUser, updateUser);
+router.get("/count/count", getQtyUsers);
 
 // RUTAS PROTEGIDAS
 /* 
