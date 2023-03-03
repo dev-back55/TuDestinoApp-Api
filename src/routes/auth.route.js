@@ -4,10 +4,11 @@ import {
   validateDataLoginUser,
   validateDataRegisterUser,
 } from "../validations/auth.validations.js";
+//import { verifyUser, verifyAdmin } from "../utils/verifyToken.js"
 
 const router = express.Router();
 
-router.post("/register", validateDataRegisterUser, register);
-router.post("/login", validateDataLoginUser, login);
+router.post("/register", register);
+router.post("/login", login);
 
 export default router;
